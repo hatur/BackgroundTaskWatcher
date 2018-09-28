@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{7EB70C12-4151-4CD3-8823-4640FE92FF9A}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="DelphiControls\DelphiControls.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="TestConsumer\TestConsumer.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="DelphiControls">
+        <MSBuild Projects="DelphiControls\DelphiControls.dproj"/>
+    </Target>
+    <Target Name="DelphiControls:Clean">
+        <MSBuild Projects="DelphiControls\DelphiControls.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DelphiControls:Make">
+        <MSBuild Projects="DelphiControls\DelphiControls.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="TestConsumer">
+        <MSBuild Projects="TestConsumer\TestConsumer.dproj"/>
+    </Target>
+    <Target Name="TestConsumer:Clean">
+        <MSBuild Projects="TestConsumer\TestConsumer.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TestConsumer:Make">
+        <MSBuild Projects="TestConsumer\TestConsumer.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="DelphiControls;TestConsumer"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="DelphiControls:Clean;TestConsumer:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="DelphiControls:Make;TestConsumer:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
