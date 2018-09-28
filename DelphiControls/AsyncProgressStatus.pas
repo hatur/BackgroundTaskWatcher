@@ -17,8 +17,8 @@ type
     ANIMATION_FRAMES: Integer = 9;
   var
     { Private-Deklarationen }
-    fLabel: TLabel;
-    fVerboseInformation: TLabel;
+    fInfotext1: TLabel;
+    fInfotext2: TLabel;
     fLoadingGraphics: TObjectList<TPngImage>;
     fCurrentIndex: Integer;
     fLoadingImage: TImage;
@@ -68,17 +68,17 @@ begin
 
   fTasks := TList<ITask>.Create;
 
-  fLabel := TLabel.Create(Self);
-  fLabel.Parent := Self;
-  fLabel.Caption := 'Loading..';
-  fLabel.Left := 2;
-  fLabel.Top := 36;
+  fInfotext1 := TLabel.Create(Self);
+  fInfotext1.Parent := Self;
+  fInfotext1.Caption := 'Loading..';
+  fInfotext1.Left := 42;
+  fInfotext1.Top := 4;
 
-  fVerboseInformation := TLabel.Create(Self);
-  fVerboseInformation.Parent := Self;
-  fVerboseInformation.Caption := 'Test';
-  fVerboseInformation.Left := 2;
-  fVerboseInformation.Top := 50;
+  fInfotext2 := TLabel.Create(Self);
+  fInfotext2.Parent := Self;
+  fInfotext2.Caption := '';
+  fInfotext2.Left := 42;
+  fInfotext2.Top := 18;
 
   fLoadingImage := TImage.Create(Self);
   fLoadingImage.Parent := Self;
@@ -143,7 +143,7 @@ begin
 
   if fTasks.Count = 0 then
   begin
-    fVerboseInformation.Caption := '';
+    fInfotext2.Caption := '';
   end
   else
   begin
@@ -156,7 +156,7 @@ begin
       end;
     end;
 
-    fVerboseInformation.Caption := IntToStr(lFinishedCount) + ' of ' + IntToStr(fTasks.Count);
+    fInfotext2.Caption := IntToStr(lFinishedCount) + ' of ' + IntToStr(fTasks.Count);
   end;
 end;
 
