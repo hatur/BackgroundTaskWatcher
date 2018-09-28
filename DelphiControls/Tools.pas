@@ -9,3 +9,5 @@ uses
   System.Types, System.Classes, System.SysUtils, Vcl.Imaging.Pngimage;
 
 implementation
+
+end.
